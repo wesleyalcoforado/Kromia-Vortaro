@@ -1,0 +1,89 @@
+﻿<html>
+<head><title>Vortaro</title></head>
+<script type="text/javascript">
+  function serchi(){
+    var vorto = document.getElementById('vorto').value;
+	if(vorto == null || vorto.trim().length == 0){
+		return;
+	}
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(datumoj) {
+	  if (xhr.readyState == 4) {
+		if (xhr.status == 200) {
+		  var datumoj = xhr.responseText;
+		  aranghi(datumoj);
+		} else {
+		  aranghi(null);
+		}
+	  }
+	}  
+	
+	var url = 'http://www.lernu.net/cgi-bin/serchi.pl?modelo='+vorto+'&delingvo=eo&allingvo=pt';
+	xhr.open('GET', url, true);
+	xhr.send();  	
+  }
+  
+  function aranghi(datumoj){
+	var divTraduko = document.getElementById('traduko');
+	divTraduko.innerHTML = '';
+		
+	if(datumoj != null){
+		var rikordoj = datumoj.split('\n');
+		var tradukota = rikordoj[0].split('\t');
+		var tradukotaVorto = tradukota[1];
+		var silaboj = tradukota[2];
+		var radiko = tradukota[3];
+		
+		if(silaboj.trim().length > 0){
+			silaboj = silaboj.replace(/\//g, '·');
+			tradukotaVorto = tradukotaVorto + ' (' + silaboj;
+			if(radiko.trim().length > 0){
+				tradukotaVorto = tradukotaVorto + ' ← '+ radiko;
+			}
+			tradukotaVorto = tradukotaVorto + ')';
+		}
+		
+		var tradukita = rikordoj[1].split('\t');
+		var tradukitajVortoj = tradukita[3].replace('&gt;', '»').replace('>', '»').split(';');
+	
+		var dl = document.createElement('dl');
+		var dt = document.createElement('dt');
+		dt.innerText = tradukotaVorto;
+		
+		dl.appendChild(dt);
+	
+		for(var v in tradukitajVortoj){
+			var dd = document.createElement('dd');
+			dd.innerText = tradukitajVortoj[v];
+			dl.appendChild(dd);
+		}
+	
+		divTraduko.appendChild(dl);
+	}
+  }
+</script>
+
+<body>
+
+<table>
+	<tr>
+		<td colspan="2">
+			<div align="center">EO - PT</div>
+		</td>
+	</tr>
+	<tr>
+		<td><input type="text" id="vorto"></td>
+		<td><button onclick="serchi()">Serĉi</button></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div id="traduko"></div>
+		</td>
+	</tr>
+</table>
+
+
+
+</body>
+</html>
