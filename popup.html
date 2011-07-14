@@ -1,5 +1,17 @@
 ﻿<html>
-<head><title>Vortaro</title></head>
+<head>
+	<title>Vortaro</title>
+	<style>
+		dt {
+			font-weight: bold;
+		}
+		
+		dt .detaloj {
+			font-weight: normal;
+			color: blue;
+		}
+	</style>
+</head>
 <script type="text/javascript">
   function serchi(){
     var vorto = document.getElementById('vorto').value;
@@ -37,11 +49,11 @@
 		
 		if(silaboj.trim().length > 0){
 			silaboj = silaboj.replace(/\//g, '·');
-			tradukotaVorto = tradukotaVorto + ' (' + silaboj;
+			tradukotaVorto = tradukotaVorto + " <span class='detaloj'>(" + silaboj;
 			if(radiko.trim().length > 0){
 				tradukotaVorto = tradukotaVorto + ' ← '+ radiko;
 			}
-			tradukotaVorto = tradukotaVorto + ')';
+			tradukotaVorto = tradukotaVorto + ')</span>';
 		}
 		
 		var tradukita = rikordoj[1].split('\t');
@@ -49,7 +61,7 @@
 	
 		var dl = document.createElement('dl');
 		var dt = document.createElement('dt');
-		dt.innerText = tradukotaVorto;
+		dt.innerHTML = tradukotaVorto;
 		
 		dl.appendChild(dt);
 	
