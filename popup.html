@@ -2,6 +2,17 @@
 <head>
 	<title>Vortaro</title>
 	<style>
+		@import url(http://fonts.googleapis.com/css?family=Ubuntu&v2);
+		
+		* {
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 10pt;
+		}
+		
+		img {
+			vertical-align: text-bottom;
+		}
+	
 		dt {
 			font-weight: bold;
 		}
@@ -31,8 +42,14 @@
 			}
 		}  
 		
-		var delingvo = localStorage.deLingvo.toLowerCase();
-		var allingvo = localStorage.alLingvo.toLowerCase();
+		var delingvo = "eo";
+		var allingvo = localStorage.lingvo;
+		
+		if(localStorage.direkto == "maldekstre"){
+			delingvo = localStorage.lingvo;
+			allingvo = "eo";
+		}
+		
 
 		var url = 'http://www.lernu.net/cgi-bin/serchi.pl?modelo='+vorto+'&delingvo='+delingvo+'&allingvo='+allingvo;
 		xhr.open('GET', url, true);
@@ -85,29 +102,44 @@
 				(datumoj.indexOf("\n") != -1);
 	}
 	
-	function shanghiLingvojn(){
-		var delingvo = document.getElementById('delingvo');
-		var allingvo = document.getElementById('allingvo');
+	function shanghiDirekton(){
+		var bildoDirekto = document.getElementById('direkto');
 		
-		var helpo = delingvo.innerHTML;
-		delingvo.innerHTML = allingvo.innerHTML;
-		allingvo.innerHTML = helpo;
-		
-		localStorage.deLingvo = delingvo.innerHTML;
-		localStorage.alLingvo = allingvo.innerHTML;
+		if(localStorage.direkto == "dekstre"){
+			localStorage.direkto = "maldekstre";
+			bildoDirekto.src = "sago_maldekstre.png";
+		}else{
+			localStorage.direkto = "dekstre"
+			bildoDirekto.src = "sago_dekstre.png";
+		}
 	}
 	
 	function reshargi(){
-		if(localStorage.deLingvo == null && localStorage.alLingvo == null){
-			localStorage.deLingvo = "EO";
-			localStorage.alLingvo = "PT";
+		if(localStorage.lingvo == null){
+			localStorage.lingvo = "pt";
 		}
 		
-		var delingvo = document.getElementById('delingvo');
-		var allingvo = document.getElementById('allingvo');
+		var lingvo = document.getElementById('lingvo');
+		for(var i=0; i<lingvo.options.length; i++){
+			console.log(lingvo.options[i].value);
+			if(lingvo.options[i].value == localStorage.lingvo){
+				lingvo.selectedIndex = i;
+				break;
+			}
+		}
 		
-		delingvo.innerHTML = localStorage.deLingvo;
-		allingvo.innerHTML = localStorage.alLingvo;
+		if(localStorage.direkto == null || localStorage.direkto == "dekstre"){
+			localStorage.direkto = "dekstre";
+		}else{
+			var bildoDirekto = document.getElementById('direkto');
+			bildoDirekto.src = "sago_maldekstre.png";
+			localStorage.direkto = "maldekstre";
+		}
+	}
+	
+	function aktualigiLingvon(){
+		var lingvo = document.getElementById('lingvo');
+		localStorage.lingvo = lingvo.options[lingvo.selectedIndex].value;
 	}
   
 </script>
@@ -119,9 +151,49 @@
 		<tr>
 			<td colspan="2">
 				<div align="center">
-					<span id="delingvo">EO</span>
-					<img src="action_refresh.gif" onclick="shanghiLingvojn()">
-					<span id="allingvo">PT</span>
+					EO
+					<img src="sago_dekstre.png" id="direkto" onclick="shanghiDirekton()">
+					<select id="lingvo" onchange="aktualigiLingvon()"> 
+						<option value="eo">Esperanto</option> 
+						<option value="en">English</option> 
+						<option value="ar">عربي</option> 
+						<option value="bg">Български</option> 
+						<option value="cs">Čeština</option> 
+						<option value="zh">中文</option> 
+						<option value="da">Dansk</option> 
+						<option value="fi">Suomi</option> 
+						<option value="fr">Français</option> 
+						<option value="de">Deutsch</option> 
+						<option value="el">Ελληνικά</option> 
+						<option value="he">עברית</option> 
+						<option value="hi">हिन्दी</option> 
+						<option value="es">Español</option> 
+						<option value="hu">Magyar</option> 
+						<option value="ga">Gaeilge</option> 
+						<option value="it">Italiano</option> 
+						<option value="ja">日本語</option> 
+						<option value="ca">Català</option> 
+						<option value="ko">한국어</option> 
+						<option value="hr">Hrvatski</option> 
+						<option value="lt">Lietuvių</option> 
+						<option value="nl">Nederlands</option> 
+						<option value="no">Norsk</option> 
+						<option value="fa">فارسی</option> 
+						<option value="pl">Polski</option> 
+						<option value="pt">Português</option> 
+						<option value="ro">Română</option> 
+						<option value="ru">Русский</option> 
+						<option value="sr">Српски</option> 
+						<option value="sk">Slovenčina</option> 
+						<option value="sl">Slovensko</option> 
+						<option value="hsb">Hornjoserbsce</option> 
+						<option value="sw">Kiswahili</option> 
+						<option value="sv">Svenska</option> 
+						<option value="th">ไทย</option> 
+						<option value="tr">Türkçe</option> 
+						<option value="uk">Українська</option> 
+						<option value="vi">Việt nam</option> 
+					</select> 					
 				</div>
 			</td>
 		</tr>
