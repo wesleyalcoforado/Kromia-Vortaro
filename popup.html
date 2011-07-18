@@ -21,6 +21,10 @@
 			font-weight: normal;
 			color: blue;
 		}
+		
+		#traduko {
+			padding: 5px 0;
+		}
 	</style>
 </head>
 <script type="text/javascript">
@@ -53,7 +57,8 @@
 
 		var url = 'http://www.lernu.net/cgi-bin/serchi.pl?modelo='+vorto+'&delingvo='+delingvo+'&allingvo='+allingvo;
 		xhr.open('GET', url, true);
-		xhr.send();  	
+		xhr.send();
+		montriSxargxbildon();
 	}
   
 	function aranghi(datumoj){
@@ -140,6 +145,18 @@
 	function aktualigiLingvon(){
 		var lingvo = document.getElementById('lingvo');
 		localStorage.lingvo = lingvo.options[lingvo.selectedIndex].value;
+	}
+	
+	function montriSxargxbildon(){
+		
+		var ajax = document.createElement('img');
+		ajax.src = "ajax.gif";
+		var div = document.createElement('div');
+		div.align = "center";
+		div.appendChild(ajax);
+		
+		document.getElementById("traduko").innerHTML = '';
+		document.getElementById("traduko").appendChild(div);
 	}
   
 </script>
