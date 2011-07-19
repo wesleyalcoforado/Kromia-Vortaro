@@ -158,6 +158,26 @@
 		document.getElementById("traduko").innerHTML = '';
 		document.getElementById("traduko").appendChild(div);
 	}
+
+	function xAlUtf8(t,el) {
+		if (document.getElementById("x").checked) {
+			t = t.replace(/c[xX]/g, "\u0109");
+			t = t.replace(/g[xX]/g, "\u011d");
+			t = t.replace(/h[xX]/g, "\u0125");
+			t = t.replace(/j[xX]/g, "\u0135");
+			t = t.replace(/s[xX]/g, "\u015d");
+			t = t.replace(/u[xX]/g, "\u016d");
+			t = t.replace(/C[xX]/g, "\u0108");
+			t = t.replace(/G[xX]/g, "\u011c");
+			t = t.replace(/H[xX]/g, "\u0124");
+			t = t.replace(/J[xX]/g, "\u0134");
+			t = t.replace(/S[xX]/g, "\u015c");
+			t = t.replace(/U[xX]/g, "\u016c");
+			if (t != document.getElementById(el).value) {
+				document.getElementById(el).value = t;
+			}
+		}
+	}
   
 </script>
 
@@ -215,8 +235,13 @@
 			</td>
 		</tr>
 		<tr>
-			<td><input type="text" id="vorto"></td>
+			<td><input type="text" id="vorto" onKeyUp="xAlUtf8(this.value,'vorto')"></td>
 			<td><input type="submit" onclick="serchi()" value="Serĉi"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				anstataŭigu  cx, gx, ..., ux <input type="checkbox" name="x" id="x" onClick="xAlUtf8(document.getElementById('vorto').value,'vorto')" checked="checked">
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
