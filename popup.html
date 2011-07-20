@@ -126,7 +126,6 @@
 		
 		var lingvo = document.getElementById('lingvo');
 		for(var i=0; i<lingvo.options.length; i++){
-			console.log(lingvo.options[i].value);
 			if(lingvo.options[i].value == localStorage.lingvo){
 				lingvo.selectedIndex = i;
 				break;
@@ -140,6 +139,12 @@
 			bildoDirekto.src = "sago_maldekstre.png";
 			localStorage.direkto = "maldekstre";
 		}
+		
+		enfokusigiTekstujon();
+	}
+	
+	function enfokusigiTekstujon(){
+		document.getElementById('vorto').focus();
 	}
 	
 	function aktualigiLingvon(){
