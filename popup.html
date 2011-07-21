@@ -25,6 +25,11 @@
 		#traduko {
 			padding: 5px 0;
 		}
+		
+		.vortfarado {
+			font-weight: bold;
+			color: #0d682b;
+		}
 	</style>
 </head>
 <script type="text/javascript">
@@ -67,39 +72,69 @@
 			
 		if(vortoTrovata(datumoj)){
 			var rikordoj = datumoj.split('\n');
-			var tradukota = rikordoj[0].split('\t');
-			var tradukotaVorto = tradukota[1];
-			var silaboj = tradukota[2];
-			var radiko = tradukota[3];
+			var lineo = 0;
+			var unuaVortoDeUnuaLineo = rikordoj[0].split('\t')[0];
+			if(unuaVortoDeUnuaLineo.indexOf('·') != -1){
+				var vortfarado = rikordoj[0];
+				var span = document.createElement('span');
+				span.setAttribute('class', 'vortfarado');
+				span.innerText = vortfarado;
+				divTraduko.appendChild(span);
+				
+				lineo = 1;
+			}
 			
-			if(silaboj.trim().length > 0){
-				silaboj = silaboj.replace(/\//g, '·');
-				tradukotaVorto = tradukotaVorto + " <span class='detaloj'>(" + silaboj;
-				if(radiko.trim().length > 0){
-					tradukotaVorto = tradukotaVorto + ' ← '+ radiko;
+			while(lineo < rikordoj.length){
+				var lineoVorto = rikordoj[lineo++];
+				if(lastaLineo(lineoVorto) || lineoVorto.trim() == ''){
+					continue;
 				}
-				tradukotaVorto = tradukotaVorto + ')</span>';
+				
+				var lineoTraduko = rikordoj[lineo++];
+				var dl = html_igi(lineoVorto, lineoTraduko);
+				divTraduko.appendChild(dl);
 			}
 			
-			var tradukita = rikordoj[1].split('\t');
-			var tradukitajVortoj = tradukita[3].replace('&gt;', '»').replace('>', '»').split(';');
-
-			var dl = document.createElement('dl');
-			var dt = document.createElement('dt');
-			dt.innerHTML = tradukotaVorto;
-			
-			dl.appendChild(dt);
-
-			for(var v in tradukitajVortoj){
-				var dd = document.createElement('dd');
-				dd.innerText = tradukitajVortoj[v];
-				dl.appendChild(dd);
-			}
-
-			divTraduko.appendChild(dl);
 		}else{
 			divTraduko.innerText = "Vorto ne trovata";
 		}
+	}
+	
+	function lastaLineo(lineo){
+		return /^\[\[.*\]\]\[\[.*\]\]/.test(lineo);
+	}
+	
+	function html_igi(lineoVorto, lineoTraduko){
+		var tradukota = lineoVorto.split('\t');
+		var tradukotaVorto = tradukota[1];
+		var silaboj = tradukota[2];
+		var radiko = tradukota[3];
+		
+		if(silaboj.trim().length > 0){
+			silaboj = silaboj.replace(/\//g, '·');
+			tradukotaVorto = tradukotaVorto + " <span class='detaloj'>(" + silaboj;
+			if(radiko.trim().length > 0){
+				tradukotaVorto = tradukotaVorto + ' ← '+ radiko;
+			}
+			tradukotaVorto = tradukotaVorto + ')</span>';
+		}
+
+		var tradukita = lineoTraduko.split('\t');	
+		var tradukitajVortoj = tradukita[3].replace('&gt;', '»').replace('>', '»').split(';');
+
+		var dl = document.createElement('dl');
+		var dt = document.createElement('dt');
+		dt.innerHTML = tradukotaVorto;
+		
+		dl.appendChild(dt);
+
+		for(var v in tradukitajVortoj){
+			var dd = document.createElement('dd');
+			dd.innerText = tradukitajVortoj[v];
+			dl.appendChild(dd);
+		}
+		
+		return dl;
 	}
   
 	function vortoTrovata(datumoj){
