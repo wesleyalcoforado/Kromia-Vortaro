@@ -120,7 +120,7 @@
 		}
 
 		var tradukita = lineoTraduko.split('\t');	
-		var tradukitajVortoj = tradukita[3].replace('&gt;', '»').replace('>', '»').split(';');
+		var tradukitajVortoj = tradukita[3].replace('&gt;', '>').split(';'); 
 
 		var dl = document.createElement('dl');
 		var dt = document.createElement('dt');
@@ -130,7 +130,7 @@
 
 		for(var v in tradukitajVortoj){
 			var dd = document.createElement('dd');
-			dd.innerText = tradukitajVortoj[v];
+			dd.innerHTML = tradukitajVortoj[v];
 			dl.appendChild(dd);
 		}
 		
@@ -218,7 +218,6 @@
 			}
 		}
 	}
-  
 </script>
 
 <body onload="reshargi()">
