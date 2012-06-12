@@ -1,0 +1,22 @@
+﻿{
+	"opcioj": {
+		"message": "Opções",
+		"description": "Aba Opções"		
+	},
+	"pri": {
+		"message": "Sobre",
+		"description": "Aba Sobre"		
+	},
+	"tiparaGrando": {
+		"message": "Tamanho da fonte",
+		"description": "Opção para o tamanho da fonte"		
+	},
+	"konserviRezultoj": {
+		"message": "Manter resultados após fechar a janela",
+		"description": "Manter resultados após fechar a janela. Os resultados serão exibidos novamente quando a janela for aberta da próxima vez."
+	},
+	"konservi": {
+		"message": "Salvar",
+		"description": "Título do botão salvar"
+	}
+}

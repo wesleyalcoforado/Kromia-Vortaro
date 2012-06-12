@@ -1,0 +1,17 @@
+﻿{
+	"opcioj": {
+		"message": "Opciones"	
+	},
+	"pri": {
+		"message": "Sobre"		
+	},
+	"tiparaGrando": {
+		"message": "Tamanho de fuente"
+	},
+	"konserviRezultoj": {
+		"message": "Mantener resultados después de cerrar la ventana"
+	},
+	"konservi": {
+		"message": "Guardar"
+	}
+}

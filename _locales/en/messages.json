@@ -1,0 +1,22 @@
+﻿{
+	"opcioj": {
+		"message": "Options",
+		"description": "Options tab"		
+	},
+	"pri": {
+		"message": "About",
+		"description": "About tab"		
+	},
+	"tiparaGrando": {
+		"message": "Font size",
+		"description": "Option for font size"		
+	},
+	"konserviRezultoj": {
+		"message": "Keep results after closing the popup window",
+		"description": "Keep results after closing the popup window. They will be shown again when it is opened the next time."
+	},
+	"konservi": {
+		"message": "Save",
+		"description": "Caption for save button"
+	}
+}

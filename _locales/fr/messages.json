@@ -1,0 +1,17 @@
+﻿{
+	"opcioj": {
+		"message": "Options"	
+	},
+	"pri": {
+		"message": "À propos"		
+	},
+	"tiparaGrando": {
+		"message": "Taille de la police"
+	},
+	"konserviRezultoj": {
+		"message": "Maintenir les résultats après la fermeture de la fenêtre"
+	},
+	"konservi": {
+		"message": "Enregistrer"
+	}
+}
