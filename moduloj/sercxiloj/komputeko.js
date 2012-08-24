@@ -43,7 +43,7 @@ Komputeko.prototype.disponeblajLingvoj = function(){
   lingvoj['es'] = 'Español';
   lingvoj['nl'] = 'Nederlands';
   lingvoj['ca'] = 'Català';
-  lingvoj['po'] = 'Polski';
+  lingvoj['pl'] = 'Polski';
   
   return lingvoj;
 }
