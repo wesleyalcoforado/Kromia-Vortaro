@@ -38,11 +38,11 @@ Komputeko.prototype._aranghi = function(html) {
 Komputeko.prototype.disponeblajLingvoj = function(){
   var lingvoj = new Array();
   lingvoj['en'] = 'English';
-  lingvoj['fr'] = 'FranÁais';
+  lingvoj['fr'] = 'Fran√ßais';
   lingvoj['de'] = 'Deutsch';
-  lingvoj['es'] = 'EspaÒol';
+  lingvoj['es'] = 'Espa√±ol';
   lingvoj['nl'] = 'Nederlands';
-  lingvoj['ca'] = 'Catal‡';
+  lingvoj['ca'] = 'Catal√†';
   lingvoj['pl'] = 'Polski';
   
   return lingvoj;
