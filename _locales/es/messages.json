@@ -1,9 +1,9 @@
 ﻿{
 	"opcioj": {
-		"message": "Opciones"	
+		"message": "Opciones"
 	},
 	"pri": {
-		"message": "Sobre"		
+		"message": "Sobre"
 	},
 	"tiparaGrando": {
 		"message": "Tamanho de fuente"
@@ -13,5 +13,8 @@
 	},
 	"konservi": {
 		"message": "Guardar"
+	},
+	"motoro": {
+		"message": "Motor de búsqueda"
 	}
 }

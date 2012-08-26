@@ -1,15 +1,15 @@
 ﻿{
 	"opcioj": {
 		"message": "Opções",
-		"description": "Aba Opções"		
+		"description": "Aba Opções"
 	},
 	"pri": {
 		"message": "Sobre",
-		"description": "Aba Sobre"		
+		"description": "Aba Sobre"
 	},
 	"tiparaGrando": {
 		"message": "Tamanho da fonte",
-		"description": "Opção para o tamanho da fonte"		
+		"description": "Opção para o tamanho da fonte"
 	},
 	"konserviRezultoj": {
 		"message": "Manter resultados após fechar a janela",
@@ -18,5 +18,9 @@
 	"konservi": {
 		"message": "Salvar",
 		"description": "Título do botão salvar"
+	},
+	"motoro": {
+		"message": "Motor de busca",
+		"description": "Dicionário utilizado na pesquisa."
 	}
 }

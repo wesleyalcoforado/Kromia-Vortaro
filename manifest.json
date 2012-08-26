@@ -1,19 +1,21 @@
 ﻿{
   "name": "Kromia Vortaro",
-  "version": "1.1",
+  "version": "2",
   "description": "Kromia Vortaro is a multilingual Esperanto dictionary that searches the Lernu! portal databases.",
   "permissions": [
-    "http://www.lernu.net/*"
+    "http://www.lernu.net/*",
+    "http://www.komputeko.net/*"
   ],
   "icons": {
-  	"16":  "vortaro16.png",
-  	"48":  "vortaro48.png",
-  	"128":  "vortaro128.png"
+    "16":  "vortaro16.png",
+    "48":  "vortaro48.png",
+    "128":  "vortaro128.png"
   },  
   "browser_action": {
     "default_popup": "popup.html",
-	"default_icon": "vortaro16.png"
+    "default_icon": "vortaro16.png"
   },
   "options_page": "options.html",
-  "default_locale": "en"  
+  "default_locale": "en",
+  "manifest_version": 2
 }

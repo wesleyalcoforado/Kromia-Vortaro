@@ -1,9 +1,9 @@
 ﻿{
 	"opcioj": {
-		"message": "Options"	
+		"message": "Options"
 	},
 	"pri": {
-		"message": "À propos"		
+		"message": "À propos"
 	},
 	"tiparaGrando": {
 		"message": "Taille de la police"
@@ -13,5 +13,8 @@
 	},
 	"konservi": {
 		"message": "Enregistrer"
+	},
+	"motoro": {
+		"message": "Moteur de recherche"
 	}
 }

@@ -3,29 +3,28 @@ function serchi(){
   if(vorto.trim().length == 0){
     return false;
   }
-  
+
   var delingvo = "eo";
   var allingvo = localStorage.lingvo;
-  
+
   if(localStorage.direkto == "maldekstre"){
     delingvo = localStorage.lingvo;
     allingvo = "eo";
   }
-  
-  var serchilo = new Lernu(delingvo, allingvo);
+
+  var serchilo = new this[localStorage.motoro](delingvo, allingvo);
   serchilo.serchi(vorto);
-  
+
   montriSharghbildon();
 }
 
 function montriSharghbildon(){
-  $("#traduko").empty();
-  $("#traduko").append("<div align='center'><img src='ajax.gif'></div>");
+  $("#traduko").empty().append("<div align='center'><img src='ajax.gif'></div>");
 }
 
 function shanghiDirekton(){
   var bildoDirekto = $("#direkto");
-  
+
   if(localStorage.direkto == "dekstre"){
     localStorage.direkto = "maldekstre";
     bildoDirekto.attr("src", "sago_maldekstre.png");
@@ -36,20 +35,28 @@ function shanghiDirekton(){
 }
 
 function reshargi(){
+  if(localStorage.motoro == undefined){
+    localStorage.motoro = "Lernu";
+  }
   listigiLingvojn();
 
-  if(localStorage.lingvo == null){
-    localStorage.lingvo = "pt";
+  debugger;
+
+  if(localStorage.lingvo == null || !lingvoEstasDisponebla(localStorage.lingvo)){
+    if(lingvoEstasDisponebla("pt"))
+      localStorage.lingvo = "pt";
+    else
+      localStorage.lingvo = "en";
   }
   $("#lingvo").val(localStorage.lingvo);
-  
+
   if(localStorage.direkto == null || localStorage.direkto == "dekstre"){
     localStorage.direkto = "dekstre";
   }else{
     $("#direkto").attr("src", "sago_maldekstre.png");
     localStorage.direkto = "maldekstre";
   }
-  
+
   if(localStorage.konserviRezultoj == "true"){
     if(localStorage.vorto){
       $("#vorto").val(localStorage.vorto);
@@ -59,18 +66,22 @@ function reshargi(){
       $("#traduko").empty().append(localStorage.rezultoj);
     }
   }
-  
+
   if(localStorage.tiparaGrando){
     var cxio = document.querySelectorAll('*');
-    
+
     for(var i in cxio){
       if(cxio[i] && cxio[i].style){
         cxio[i].style.fontSize = localStorage.tiparaGrando + 'pt';
       }
     }
   }
-  
+
   enfokusigiTekstujon();
+}
+
+function lingvoEstasDisponebla(lingvo) {
+  return $("#lingvo option[value='"+lingvo+"']").length > 0;
 }
 
 function enfokusigiTekstujon(){
@@ -78,7 +89,7 @@ function enfokusigiTekstujon(){
 }
 
 function listigiLingvojn(){
-  var lingvoj = new Lernu().disponeblajLingvoj();
+  var lingvoj = (new this[localStorage.motoro]).disponeblajLingvoj();
   for(var lingvo in lingvoj){
   	if(lingvoj[lingvo]){
   	  $("<option/>").val(lingvo).text(lingvoj[lingvo]).appendTo("#lingvo");

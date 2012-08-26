@@ -1,15 +1,15 @@
 ﻿{
 	"opcioj": {
 		"message": "Options",
-		"description": "Options tab"		
+		"description": "Options tab"
 	},
 	"pri": {
 		"message": "About",
-		"description": "About tab"		
+		"description": "About tab"
 	},
 	"tiparaGrando": {
 		"message": "Font size",
-		"description": "Option for font size"		
+		"description": "Option for font size"
 	},
 	"konserviRezultoj": {
 		"message": "Keep results after closing the popup window",
@@ -18,5 +18,9 @@
 	"konservi": {
 		"message": "Save",
 		"description": "Caption for save button"
+	},
+	"motoro": {
+		"message": "Search engine",
+		"description": "Dictionary's search engine"
 	}
 }

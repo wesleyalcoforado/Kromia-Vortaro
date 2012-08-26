@@ -23,23 +23,9 @@ Kromia Vortaro is Copyright (c) 2011 Wesley Alcoforado
   <link href="stiloj.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="moduloj/jquery.min.js"></script>
   <script type="text/javascript" src="moduloj/sercho.js"></script>
-  <script type="text/javascript" src="moduloj/sercxiloj/komputeko.js"></script>
-  <script type="text/javascript" src="moduloj/sercxiloj/lernu.js"></script>
-  
-<script type="text/javascript">
-
-$(document).ready(function(){
-  reshargi();
-
-  //eventoj
-  $("#formulario").submit(function(){
-    serchi();
-    return false;
-  });
-  $("#direkto").click(shanghiDirekton);
-  $("#lingvo").change(aktualigiLingvon);
-});
-</script>  
+  <script type="text/javascript" src="moduloj/serchiloj/komputeko.js"></script>
+  <script type="text/javascript" src="moduloj/serchiloj/lernu.js"></script>
+  <script type="text/javascript" src="moduloj/bazo.js"></script>
 </head>
 
 
@@ -52,8 +38,7 @@ $(document).ready(function(){
         <div align="center">
           EO
           <img src="sago_dekstre.png" id="direkto">
-          <select id="lingvo"> 
-          </select>           
+          <select id="lingvo"></select>
         </div>
       </td>
     </tr>
