@@ -22,5 +22,9 @@
 	"motoro": {
 		"message": "Search engine",
 		"description": "Dictionary's search engine"
-	}
+	},
+  "mesagho_sukceso": {
+    "message": "Your settings were successfully saved!",
+    "description": "Success message after saving the user options."
+  }
 }

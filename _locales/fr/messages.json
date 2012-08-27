@@ -16,5 +16,8 @@
 	},
 	"motoro": {
 		"message": "Moteur de recherche"
-	}
+	},
+  "mesagho_sukceso": {
+    "message": "Vos modifications ont bien été enregistrées!"
+  }
 }

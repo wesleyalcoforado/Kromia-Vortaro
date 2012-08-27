@@ -8,6 +8,8 @@ function konservi() {
     localStorage.vorto = "";
     localStorage.rezultoj = "";
   }
+  
+  $("#msg").fadeIn(1200, function(){ $(this).fadeOut(1800); });
 }
 
 function reshargi() {

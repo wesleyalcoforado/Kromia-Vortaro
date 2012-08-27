@@ -5,6 +5,12 @@ function Komputeko(deLingvo, alLingvo){
 
 Komputeko.prototype.serchi = function(vorto){
   var url = 'http://www.komputeko.net/index_eo.php?vorto=' + vorto;
+  
+  var naciLingvo = this.deLingvo == "eo" ? this.alLingvo : this.deLingvo;
+  if(naciLingvo == "es" || naciLingvo == "ca" || naciLingvo == "pl") {
+    url = 'http://www.komputeko.net/varianto1/index_eo.php?vorto=' + vorto;
+  }
+
   var chi = this;
 
   $.ajax({
@@ -24,7 +30,7 @@ Komputeko.prototype._aranghi = function(html) {
   var indeksoAl = this._indeksoLingvo(this.alLingvo);
 
   var tradukotaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoDe+"]", doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-  var tradukitaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoAl+"]", doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null); //default: EN
+  var tradukitaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoAl+"]", doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null); 
 
   var tradukotaVorto = tradukotaj.iterateNext();
   var tradukitaVorto = tradukitaj.iterateNext();

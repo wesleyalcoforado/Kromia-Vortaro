@@ -16,5 +16,8 @@
 	},
 	"motoro": {
 		"message": "Motor de búsqueda"
-	}
+	},
+  "mesagho_sukceso": {
+    "message": "Las configuraciones se han guardado con éxito!"
+  }
 }

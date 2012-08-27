@@ -22,5 +22,9 @@
 	"motoro": {
 		"message": "Motor de busca",
 		"description": "Dicionário utilizado na pesquisa."
-	}
+	},
+  "mesagho_sukceso": {
+    "message": "Suas alterações foram salvas com sucesso!",
+    "description": "Mensagem de sucesso após salvar as opções."
+  }
 }
