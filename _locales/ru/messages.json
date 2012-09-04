@@ -1,0 +1,23 @@
+﻿{
+	"opcioj": {
+		"message": "Опции"
+	},
+	"pri": {
+		"message": "О"
+	},
+	"tiparaGrando": {
+		"message": "Размер шрифта"
+	},
+	"konserviRezultoj": {
+		"message": "Сохранить результаты после закрытия всплывающего окна"
+	},
+	"konservi": {
+		"message": "Сохранить"
+	},
+	"motoro": {
+		"message": "Инструмент поиска"
+	},
+  "mesagho_sukceso": {
+    "message": "Ваши настройки были успешно сохранены!"
+  }
+}
