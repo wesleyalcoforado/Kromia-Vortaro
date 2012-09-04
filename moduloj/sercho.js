@@ -41,8 +41,10 @@ function reshargi(){
   
   if(localStorage.motoro == "Lernu"){
     $("#vortaro").css('backgroundImage', 'url(bildoj/lernu.png)')
-  }else{
+  }else if(localStorage.motoro == "Komputeko"){
     $("#vortaro").css('backgroundImage', 'url(bildoj/komputeko.png)')
+  }else{
+    $("#vortaro").css('backgroundImage', 'url(bildoj/revo.png)')
   }
   
   listigiLingvojn();
@@ -126,8 +128,6 @@ function transkribiLiteron(evento) {
 
     objekto.setSelectionRange(rezulto.length, rezulto.length);
   }
-
-  this.originalEvent.returnValue = false;
 }
 
 function transkribi(teksto) {
