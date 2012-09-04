@@ -5,7 +5,7 @@ function Komputeko(deLingvo, alLingvo){
 
 Komputeko.prototype.serchi = function(vorto){
   var url = 'http://www.komputeko.net/index_eo.php?vorto=' + vorto;
-  
+
   var naciLingvo = this.deLingvo == "eo" ? this.alLingvo : this.deLingvo;
   if(naciLingvo == "es" || naciLingvo == "ca" || naciLingvo == "pl") {
     url = 'http://www.komputeko.net/varianto1/index_eo.php?vorto=' + vorto;
@@ -29,15 +29,15 @@ Komputeko.prototype._aranghi = function(html) {
   var indeksoDe = this._indeksoLingvo(this.deLingvo);
   var indeksoAl = this._indeksoLingvo(this.alLingvo);
 
-  var tradukotaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoDe+"]", doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-  var tradukitaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoAl+"]", doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null); 
+  var tradukotaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoDe+"]", doc, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+  var tradukitaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoAl+"]", doc, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 
-  var tradukotaVorto = tradukotaj.iterateNext();
-  var tradukitaVorto = tradukitaj.iterateNext();
-  while(tradukotaVorto)
-  {
-    tradukotaVorto = tradukotaVorto.innerText.trim();
-    tradukitaVorto = tradukitaVorto.innerText.trim();
+  for(var i=0, l=tradukotaj.snapshotLength; i<l; i++){
+    var tradukotaVorto = tradukotaj.snapshotItem(i);
+    var tradukitaVorto = tradukitaj.snapshotItem(i);
+
+    tradukotaVorto = this._purigi(tradukotaVorto);
+    tradukitaVorto = this._purigi(tradukitaVorto);
 
     if(tradukitaVorto.length != 0 && tradukotaVorto.length != 0)
     {
@@ -46,15 +46,26 @@ Komputeko.prototype._aranghi = function(html) {
 
       $("#traduko").append(dl);
     }
-
-    tradukotaVorto = tradukotaj.iterateNext();
-    tradukitaVorto = tradukitaj.iterateNext();
   }
 
   if(localStorage.konserviRezultoj == "true"){
     localStorage.vorto = $("#vorto").val();
     localStorage.rezultoj = $("#traduko").html();
   }
+
+  $("#xmlparser")[0].src = '';
+}
+
+Komputeko.prototype._purigi = function(vorto){
+  $('.fonto', vorto).html('');
+  var arrDifinoj1 = vorto.innerText.split(';');
+  var arrDifinoj2 = [];
+  for(var dif in arrDifinoj1){
+     var x = arrDifinoj1[dif].split('OR')[0].trim();
+     arrDifinoj2.push(x);
+  }
+
+  return arrDifinoj2.join('; ')
 }
 
 Komputeko.prototype._indeksoLingvo = function(lingvo){
