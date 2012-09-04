@@ -1,4 +1,4 @@
-function Lernu(deLingvo, alLingvo){
+﻿function Lernu(deLingvo, alLingvo){
   this.deLingvo = deLingvo;
   this.alLingvo = alLingvo;
 }

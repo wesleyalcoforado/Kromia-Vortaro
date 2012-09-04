@@ -1,4 +1,4 @@
-function serchi(){
+﻿function serchi(){
   var vorto = $("#vorto").val();
   if(vorto.trim().length == 0){
     return false;
@@ -19,7 +19,7 @@ function serchi(){
 }
 
 function montriSharghbildon(){
-  $("#traduko").empty().append("<div align='center'><img src='ajax.gif'></div>");
+  $("#traduko").empty().append("<div align='center'><img src='bildoj/ajax.gif'></div>");
 }
 
 function shanghiDirekton(){
@@ -27,10 +27,10 @@ function shanghiDirekton(){
 
   if(localStorage.direkto == "dekstre"){
     localStorage.direkto = "maldekstre";
-    bildoDirekto.attr("src", "sago_maldekstre.png");
+    bildoDirekto.attr("src", "bildoj/sago_maldekstre.png");
   }else{
     localStorage.direkto = "dekstre"
-    bildoDirekto.attr("src", "sago_dekstre.png");
+    bildoDirekto.attr("src", "bildoj/sago_dekstre.png");
   }
 }
 
@@ -38,9 +38,14 @@ function reshargi(){
   if(localStorage.motoro == undefined){
     localStorage.motoro = "Lernu";
   }
+  
+  if(localStorage.motoro == "Lernu"){
+    $("#vortaro").css('backgroundImage', 'url(bildoj/lernu.png)')
+  }else{
+    $("#vortaro").css('backgroundImage', 'url(bildoj/komputeko.png)')
+  }
+  
   listigiLingvojn();
-
-  debugger;
 
   if(localStorage.lingvo == null || !lingvoEstasDisponebla(localStorage.lingvo)){
     if(lingvoEstasDisponebla("pt"))
@@ -53,7 +58,7 @@ function reshargi(){
   if(localStorage.direkto == null || localStorage.direkto == "dekstre"){
     localStorage.direkto = "dekstre";
   }else{
-    $("#direkto").attr("src", "sago_maldekstre.png");
+    $("#direkto").attr("src", "bildoj/sago_maldekstre.png");
     localStorage.direkto = "maldekstre";
   }
 
@@ -76,7 +81,7 @@ function reshargi(){
       }
     }
   }
-
+  
   enfokusigiTekstujon();
 }
 
@@ -101,22 +106,65 @@ function aktualigiLingvon(){
   localStorage.lingvo = $("#lingvo").val();
 }
 
-function xAlUtf8(t,el) {
-  if (document.getElementById("x").checked) {
-    t = t.replace(/c[xX]/g, "\u0109");
-    t = t.replace(/g[xX]/g, "\u011d");
-    t = t.replace(/h[xX]/g, "\u0125");
-    t = t.replace(/j[xX]/g, "\u0135");
-    t = t.replace(/s[xX]/g, "\u015d");
-    t = t.replace(/u[xX]/g, "\u016d");
-    t = t.replace(/C[xX]/g, "\u0108");
-    t = t.replace(/G[xX]/g, "\u011c");
-    t = t.replace(/H[xX]/g, "\u0124");
-    t = t.replace(/J[xX]/g, "\u0134");
-    t = t.replace(/S[xX]/g, "\u015c");
-    t = t.replace(/U[xX]/g, "\u016c");
-    if (t != document.getElementById(el).value) {
-      document.getElementById(el).value = t;
+function transkribiLiteron(evento) {
+  var kodo = evento.which;
+  if (!evento.which){
+    return;
+  }
+  var teksto = String.fromCharCode(kodo);
+
+  if (kodo && kodo > 33 && (!(evento.ctrlKey || evento.altKey))){
+    if (evento.preventDefault){
+      evento.preventDefault();
+    }
+
+    var objekto = $(this)[0];
+    var antauTeksto = objekto.value.substring(0, objekto.selectionStart);
+    var rezulto = transkribi(antauTeksto + teksto);
+    var cetero = objekto.value.substr(objekto.selectionEnd);
+    objekto.value = rezulto + cetero;
+
+    objekto.setSelectionRange(rezulto.length, rezulto.length);
+  }
+
+  this.originalEvent.returnValue = false;
+}
+
+function transkribi(teksto) {
+  var necxapelitaj = new Array();
+  var cxapelitaj = new Array();
+
+  necxapelitaj['h'] = new Array ('c','C','ĉ','Ĉ','g','G','ĝ','Ĝ','h','H','ĥ','Ĥ','j','J','ĵ','Ĵ','s','S','ŝ','Ŝ','u','U','ŭ','Ŭ','');
+  cxapelitaj['h'] = new Array ('ĉ','Ĉ','ch','Ch','ĝ','Ĝ','gh','Gh','ĥ','Ĥ','hh','Hh','ĵ','Ĵ','jh','Jh','ŝ','Ŝ','sh','Sh','ŭ','Ŭ','uh','Uh','h');
+
+  necxapelitaj['H'] = new Array ('c','C','ĉ','Ĉ','g','G','ĝ','Ĝ','h','H','ĥ','Ĥ','j','J','ĵ','Ĵ','s','S','ŝ','Ŝ','u','U','ŭ','Ŭ','');
+  cxapelitaj['H'] = new Array ('ĉ','Ĉ','cH','CH','ĝ','Ĝ','gH','GH','ĥ','Ĥ','hH','HH','ĵ','Ĵ','jH','JH','ŝ','Ŝ','sH','SH','ŭ','Ŭ','uH','UH','H');
+
+  necxapelitaj['x'] = new Array ('c','C','ĉ','Ĉ','g','G','ĝ','Ĝ','h','H','ĥ','Ĥ','j','J','ĵ','Ĵ','s','S','ŝ','Ŝ','u','U','ŭ','Ŭ','');
+  cxapelitaj['x'] = new Array ('ĉ','Ĉ','cx','Cx','ĝ','Ĝ','gx','Gx','ĥ','Ĥ','hx','Hx','ĵ','Ĵ','jx','Jx','ŝ','Ŝ','sx','Sx','ŭ','Ŭ','ux','Ux','x');
+
+  necxapelitaj['X'] = new Array ('c','C','ĉ','Ĉ','g','G','ĝ','Ĝ','h','H','ĥ','Ĥ','j','J','ĵ','Ĵ','s','S','ŝ','Ŝ','u','U','ŭ','Ŭ','');
+  cxapelitaj['X'] = new Array ('ĉ','Ĉ','cX','CX','ĝ','Ĝ','gX','GX','ĥ','Ĥ','hX','HX','ĵ','Ĵ','jX','JX','ŝ','Ŝ','sX','SX','ŭ','Ŭ','uX','UX','X');
+
+  necxapelitaj['w'] = new Array ('');
+  cxapelitaj['w'] = new Array ('ŭ');
+
+  necxapelitaj['W'] = new Array ('');
+  cxapelitaj['W'] = new Array ('Ŭ');
+  
+
+  var antauTeksto = teksto.substr(0, teksto.length-1);
+  var lastaLitero = teksto.substr(teksto.length-1, 1);
+  var necxapelita = necxapelitaj[lastaLitero];
+  var cxapelita = cxapelitaj[lastaLitero];
+  if (necxapelita){
+    for (var i=0; i < necxapelita.length; i++){
+      var pozicio = antauTeksto.length > necxapelita[i].length ? (antauTeksto.length - necxapelita[i].length) : 0;
+      if (necxapelita[i] == antauTeksto.substr(pozicio, antauTeksto.length - pozicio)) {
+        return antauTeksto.substr(0, antauTeksto.length - necxapelita[i].length) + cxapelita[i];
+      }
     }
   }
+  return teksto;
 }
+

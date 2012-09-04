@@ -30,35 +30,37 @@ Kromia Vortaro is Copyright (c) 2011 Wesley Alcoforado
 
 
 <body>
-
-<form id="formulario">
-  <table>
-    <tr>
-      <td colspan="2">
-        <div align="center">
-          EO
-          <img src="sago_dekstre.png" id="direkto">
-          <select id="lingvo"></select>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <!--<td><input type="text" id="vorto" onKeyUp="xAlUtf8(this.value,'vorto')"></td>-->
-      <td><input type="text" id="vorto"></td>
-      <td><input type="submit" value="Serĉi"></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        anstataŭigu  cx, gx, ..., ux <!--<input type="checkbox" name="x" id="x" onClick="xAlUtf8(document.getElementById('vorto').value,'vorto')" checked="checked">-->
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div id="traduko"></div>
-      </td>
-    </tr>
-  </table>
-</form>
+<div id="versio">
+  <div id="vortaro">
+    <form id="formulario">
+      <table>
+        <tr>
+          <td colspan="2">
+            <div align="center">
+              EO
+              <img src="bildoj/sago_dekstre.png" id="direkto">
+              <select id="lingvo"></select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" id="vorto"></td>
+          <td><input type="submit" value="Serĉi"></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            anstataŭigu  cx, gx, ..., ux <input type="checkbox" name="x" id="x" checked="checked">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div id="traduko"></div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
 
 <iframe id="xmlparser" style="display:none"></iframe>
 </body>

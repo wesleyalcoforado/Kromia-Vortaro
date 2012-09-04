@@ -1,4 +1,4 @@
-function Komputeko(deLingvo, alLingvo){
+﻿function Komputeko(deLingvo, alLingvo){
   this.deLingvo = deLingvo;
   this.alLingvo = alLingvo;
 }
@@ -32,6 +32,7 @@ Komputeko.prototype._aranghi = function(html) {
   var tradukotaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoDe+"]", doc, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
   var tradukitaj = doc.evaluate("/html/body/table[@class='search']//td["+indeksoAl+"]", doc, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 
+  var difinoj = 0;
   for(var i=0, l=tradukotaj.snapshotLength; i<l; i++){
     var tradukotaVorto = tradukotaj.snapshotItem(i);
     var tradukitaVorto = tradukitaj.snapshotItem(i);
@@ -41,11 +42,16 @@ Komputeko.prototype._aranghi = function(html) {
 
     if(tradukitaVorto.length != 0 && tradukotaVorto.length != 0)
     {
+      difinoj++;
       var dl = $("<dl/>").append("<dt>"+tradukotaVorto+"</dt>")
                          .append("<dd>"+tradukitaVorto+"</dd>");
 
       $("#traduko").append(dl);
     }
+  }
+  
+  if(difinoj == 0) {
+    $("#traduko").empty().append("Vorto ne trovata");
   }
 
   if(localStorage.konserviRezultoj == "true"){
