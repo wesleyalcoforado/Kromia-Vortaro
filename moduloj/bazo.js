@@ -8,11 +8,17 @@ $(document).ready(function(){
   });
   $("#direkto").click(shanghiDirekton);
   $("#lingvo").change(aktualigiLingvon);
-  $("#vorto").keypress(transkribiLiteron);
+
+  if(localStorage.anstatauighi == null || localStorage.anstatauighi == "true"){
+    $("#vorto").keypress(transkribiLiteron);
+  }
+
   $("#x").click(function(){
     if(this.checked) {
+      localStorage.anstatauighi = true;
       $("#vorto").bind('keypress', transkribiLiteron);
     }else{
+      localStorage.anstatauighi = false;
       $("#vorto").unbind('keypress', transkribiLiteron);
     }
   });

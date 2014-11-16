@@ -1,4 +1,4 @@
-﻿function serchi(){
+function serchi(){
   var vorto = $("#vorto").val();
   if(vorto.trim().length == 0){
     return false;
@@ -38,7 +38,7 @@ function reshargi(){
   if(localStorage.motoro == undefined){
     localStorage.motoro = "Lernu";
   }
-  
+
   if(localStorage.motoro == "Lernu"){
     $("#vortaro").css('backgroundImage', 'url(bildoj/lernu.png)')
   }else if(localStorage.motoro == "Komputeko"){
@@ -46,7 +46,7 @@ function reshargi(){
   }else{
     $("#vortaro").css('backgroundImage', 'url(bildoj/revo.png)')
   }
-  
+
   listigiLingvojn();
 
   if(localStorage.lingvo == null || !lingvoEstasDisponebla(localStorage.lingvo)){
@@ -83,7 +83,11 @@ function reshargi(){
       }
     }
   }
-  
+
+  if(localStorage.anstatauighi == "false"){
+    $("#x").removeAttr("checked");
+  }
+
   enfokusigiTekstujon();
 }
 
@@ -151,7 +155,7 @@ function transkribi(teksto) {
 
   necxapelitaj['W'] = new Array ('');
   cxapelitaj['W'] = new Array ('Ŭ');
-  
+
 
   var antauTeksto = teksto.substr(0, teksto.length-1);
   var lastaLitero = teksto.substr(teksto.length-1, 1);
